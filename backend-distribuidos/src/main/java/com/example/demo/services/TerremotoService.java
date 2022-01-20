@@ -17,7 +17,7 @@ public class TerremotoService {
     }
 
     //GETS -----------------------------------------------------------------------------------------------
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public List<Terremoto> getAllTerr(){
        return terremotoRepository.getAllTerr();
     }
