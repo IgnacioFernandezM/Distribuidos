@@ -17,8 +17,8 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
     public List<Terremoto> getAllTerr(){
         try(Connection conn = sql2o.open()){
             String query = "SELECT  "+
-                    "mag, place" +
-                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof,"+
+                    "mag, place, " +
+                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof "+
                     "FROM terremoto";
             return conn.createQuery(query).executeAndFetch(Terremoto.class);
         }catch(Exception e){
@@ -31,9 +31,9 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
     public Terremoto getMaxProf() {
         try(Connection conn = sql2o.open()){
             String query = "SELECT  "+
-                    "mag, place" +
-                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof,"+
-                    "FROM data2" +
+                    "mag, place, " +
+                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof "+
+                    "FROM terremoto " +
                     "WHERE ST_Z (ST_Transform (wkb_geometry, 4326)) = (" +
                     "   SELECT MAX (ST_Z (ST_Transform (wkb_geometry, 4326)))" +
                     "   FROM terremoto" +
@@ -49,9 +49,9 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
     public Terremoto getMinProf() {
         try(Connection conn = sql2o.open()){
             String query = "SELECT  "+
-                    "mag, place" +
-                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof,"+
-                    "FROM data2" +
+                    "mag, place, " +
+                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof "+
+                    "FROM terremoto " +
                     "WHERE ST_Z (ST_Transform (wkb_geometry, 4326)) = (" +
                     "   SELECT MIN (ST_Z (ST_Transform (wkb_geometry, 4326)))" +
                     "   FROM terremoto" +
@@ -88,10 +88,10 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
     @Override
     public Terremoto getMaxMag() {
         try(Connection conn = sql2o.open()){
-            String query = "SELECT" +
-                    "mag, place" +
-                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof," +
-                    "FROM data2" +
+            String query = "SELECT " +
+                    "mag, place, " +
+                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof " +
+                    "FROM terremoto " +
                     "WHERE mag = (" +
                     "   SELECT MAX (mag)" +
                     "   FROM terremoto" +
@@ -106,10 +106,10 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
     @Override
     public Terremoto getMinMag() {
         try(Connection conn = sql2o.open()){
-            String query = "SELECT" +
-                    "mag, place" +
-                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof," +
-                    "FROM data2" +
+            String query = "SELECT " +
+                    "mag, place, " +
+                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof " +
+                    "FROM terremoto " +
                     "WHERE mag = (" +
                     "   SELECT MIN (mag)" +
                     "   FROM terremoto" +
