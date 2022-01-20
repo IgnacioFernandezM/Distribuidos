@@ -2,12 +2,12 @@ package com.example.demo.models;
 
 public class Terremoto {
     private double mag;
-    private String lugar;
+    private String place;
     private double prof;
 
-    public Terremoto(double mag, String lugar, double prof) {
+    public Terremoto(double mag, String place, double prof) {
         this.mag = mag;
-        this.lugar = lugar;
+        this.place = place;
         this.prof = prof;
     }
 
@@ -19,12 +19,12 @@ public class Terremoto {
         this.mag = mag;
     }
 
-    public String getLugar() {
-        return lugar;
+    public String getPlace() {
+        return place;
     }
 
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public double getProf() {
