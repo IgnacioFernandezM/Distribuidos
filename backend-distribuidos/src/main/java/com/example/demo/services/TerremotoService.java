@@ -34,7 +34,7 @@ public class TerremotoService {
         return terremotoRepository.getAvgProf();
     }
     @GetMapping("/getMedProf")
-    public Terremoto getMedProf(){
+    public Double getMedProf(){
         return terremotoRepository.getMedProf();
     }
 
@@ -51,7 +51,7 @@ public class TerremotoService {
         return terremotoRepository.getAvgMag();
     }
     @GetMapping("/getMedMag")
-    public Terremoto getMedMag(){
+    public Double getMedMag(){
         return terremotoRepository.getMedMag();
     }
 }

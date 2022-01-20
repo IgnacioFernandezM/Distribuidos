@@ -70,18 +70,29 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
             return conn.createQuery(query).executeScalar(float.class);
         } catch(Exception e) {
             System.out.println(e.getMessage());
-            return 0;
+            return -1;
         }
     }
 
     @Override
-    public Terremoto getMedProf() {
+    public Double getMedProf() {
         try(Connection conn = sql2o.open()){
-            String query = "";
-            return conn.createQuery(query).executeAndFetchFirst(Terremoto.class);
+            String query = "SELECT  "+
+                    "ST_Z (ST_Transform (wkb_geometry, 4326)) AS prof "+
+                    "FROM terremoto " +
+                    "order by ST_Z (ST_Transform (wkb_geometry, 4326))";
+            List<Double> terr;
+            terr = conn.createQuery(query).executeAndFetch(Double.class);
+
+            int largo = terr.size();
+            int mitad = largo/2;
+            if(largo%2==0){
+                return (terr.get(mitad-1) + terr.get(mitad))/2;
+            }
+            return terr.get(mitad);
 
         }catch(Exception e) {
-            return null;
+            return -1.0;
         }
     }
 
@@ -128,18 +139,29 @@ public class TerremotoRepositoryImp implements TerremotoRepository{
             return conn.createQuery(query).executeScalar(float.class);
         } catch(Exception e) {
             System.out.println(e.getMessage());
-            return 0;
+            return -1;
         }
     }
 
     @Override
-    public Terremoto getMedMag() {
+    public Double getMedMag() {
         try(Connection conn = sql2o.open()){
-            String query = "";
-            return conn.createQuery(query).executeAndFetchFirst(Terremoto.class);
+            String query = "SELECT  "+
+                    "mag "+
+                    "FROM terremoto " +
+                    "order by mag";
+            List<Double> terr;
+            terr = conn.createQuery(query).executeAndFetch(Double.class);
+
+            int largo = terr.size();
+            int mitad = largo/2;
+            if(largo%2==0){
+                return (terr.get(mitad-1) + terr.get(mitad))/2;
+            }
+            return terr.get(mitad);
 
         }catch(Exception e) {
-            return null;
+            return -1.0;
         }
     }
 }

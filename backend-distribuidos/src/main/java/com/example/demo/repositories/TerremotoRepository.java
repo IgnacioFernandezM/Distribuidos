@@ -11,9 +11,10 @@ public interface TerremotoRepository {
     Terremoto getMaxProf();
     Terremoto getMinProf();
     float getAvgProf();
-    Terremoto getMedProf();
+    Double getMedProf();
+
     Terremoto getMaxMag();
     Terremoto getMinMag();
     float getAvgMag();
-    Terremoto getMedMag();
+    Double getMedMag();
 }
