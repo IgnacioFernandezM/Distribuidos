@@ -1,8 +1,5 @@
 FROM openjdk:11.0.11-oracle
 
-RUN apt-get update \
-    && apt-get install -yyq netcat
-
 COPY . .
 
 RUN  chmod +x ./gradlew
