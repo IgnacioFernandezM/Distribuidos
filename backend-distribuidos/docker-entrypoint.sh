@@ -1,1 +1,1 @@
-exec java -jar -Dserver.port=1818 /build/libs/microservice-0.0.1-SNAPSHOT.jar
+exec java -jar -Dserver.port=1818 /build/libs/demo-0.0.1-SNAPSHOT.jar
